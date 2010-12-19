@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/com.github.kariyasiesta.KariyaSiesta_1.0.0.201012182340.jar" id="com.github.kariyasiesta.KariyaSiesta" version="1.0.0.201012182340"/>
+   <feature url="features/com.github.kariyasiesta.KariyaSiesta_1.0.1.jar" id="com.github.kariyasiesta.KariyaSiesta" version="1.0.1">
+      <category name="KariyaSiesta"/>
+   </feature>
+   <category-def name="KariyaSiesta" label="KariyaSiesta"/>
 </site>
