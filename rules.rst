@@ -2,9 +2,9 @@
 =======================
 KariyaSiesta は 3種類のルール作成法を提供しています。
 
-- `XPath によるルール記述 <#xpath>`_
-- `Java によるルール記述 <#java>`_
-- `JavaScript によるルール記述 <#javascript>`_
+- `XPath によるルール記述 <#id2>`_
+- `Java によるルール記述 <#id3>`_
+- `JavaScript によるルール記述 <#id4>`_
 
 XPath > JavaScript > Java の順でルールの記述は難しくなりますが、
 その分表現力は高くなります。
@@ -13,9 +13,8 @@ XPath > JavaScript > Java の順でルールの記述は難しくなりますが
 
 XPath によるルール記述
 -----------------------
-XPath を用いたルール記述方法については チュートリアル_ で詳しく
-説明していますので、そちらをご参照ください。
-
+XPath を用いたルール記述方法については チュートリアル_
+で詳しく説明していますので、そちらをご参照ください。
 
 Java によるルール記述
 -----------------------
@@ -32,7 +31,7 @@ Java を用いたルールは、以下のインタフェースを実装します
 
 次にプロジェクトのプロパティでビルドパスに
 **sapid.jar** と **CheckerPlugin_x.x.x.jar** を追加します。
-sapid.jar は <Sapid のインストールディレクトリ>/lib/classes/ 配下にあります。
+sapid.jar は <Sapid のインストールディレクトリ>/lib/class/ 配下にあります。
 CheckerPlugin_x.x.x.jar は KariyaSiesta をインストールした Eclipse の
 plugins ディレクトリ配下にあります。
 
@@ -109,9 +108,9 @@ SampleRule.java::
          if (args.length != 1) {
              return;
          }
-         List<Result> check = new SampleRule().check(
+         List<Result> results = new SampleRule().check(
                  IFileFactory.create(args[0]), null);
-         for (Result result : check) {
+         for (Result result : results) {
              System.out.println(result.getLine() + ": " + result.getMessage());
          }
  
@@ -120,7 +119,7 @@ SampleRule.java::
  }
 
 この例では、 チュートリアル_ で XPath を用いて記述した
-「While 文で break を利用しない」というルールを
+「while ブロック内部で break を使ってはいけない」というルールを
 Java で実装しなおしたものです。
 args[0] には、SDB 構築済みの C ファイルを渡してください。
 
