@@ -2,19 +2,11 @@ body {
    background-image: url(../imgs/background.png);
    background-repeat: repeat-x;
    background-position: top;
+   color: #333;
 }
 .container {
    width: 720px;
    margin: 0 auto;
-}
-.header h1{
-   margin-left: -9999px;
-}
-.header {
-   background-image: url(../imgs/title.png);
-   background-repeat: no-repeat;
-   padding-top: 30px;
-   padding-bottom: 20px;
 }
 h3 {
    background-image: url(../imgs/h3.png);
@@ -30,3 +22,26 @@ h3 {
    font-size: 80%;
    color: #888;
 }
+a {
+   color: #00a381;
+   font-style: normal;
+   text-decoration: underline;
+}
+a:link {
+   color: #00a381;
+   font-style: normal;
+   text-decoration: underline;
+}
+a:visited {
+   color: #006e54;
+   text-decoration: underline;
+}
+a:hover {
+   color: #00a381;
+   font-style: normal;
+   text-decoration: underline;
+}
+a:active {
+   text-decoration: none;
+}
+
