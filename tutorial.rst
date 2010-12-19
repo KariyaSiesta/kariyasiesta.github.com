@@ -7,7 +7,7 @@ SDB はソフトウェアデータベースの略で、C言語ソースコード
 KariyaSiesta はソースコードのチェックに SDB を利用しているため、
 チェックの前に SDB を構築する必要があります。
 
-**Project Explorer** からチェックしたいプロジェクトを右クリックし、
+**Project Explorer** からチェックしたいプロジェクトの Makefile を右クリックし、
 **KariyaSiesta** -> **Create SDB** をクリックします。
 
 .. image:: _static/tutorial_sdb1.png
@@ -55,8 +55,10 @@ CX-Model については `ドキュメント <#>`_ を参照してください�
 
 ルールの設定方法
 -----------------------
-ルール設定ファイルの書式、設定方法(プロジェクトのプロパティとか) ::
+複数のルールをチェックしたい場合は、ルール設定ファイルを作成します。
+上記のルールのルール設定ファイルの内容は、例えば以下のようになります。 ::
 
+  <?xml version="1.0" encoding="UTF-8"?>
   <rules>
     <oneRule>
       <level>3</level>
@@ -80,6 +82,21 @@ CX-Model については `ドキュメント <#>`_ を参照してください�
   *require* を指定した場合は、 XPath 式にマッチする要素がある場合にマーカが表示されます。
   *prohibit* を指定した場合は、 XPath 式にマッチする要素がない場合にマーカが表示されます。
 
+ルール設定ファイルを作成したら、ルール設定ファイルを KariyaSiesta に登録します。
+**Project Explorer** からプロジェクトを右クリックし、 **Properties** をクリックします。
+**KariyaSiesta** をクリックします。
+
+.. image:: _static/tutorial_property.png
+
+**XPath Rule XML (WorkSpace)** 内の **New...** をクリックします。
+ルール設定ファイルを置いたディレクトリを選択し、 ***OK*** をクリックします。
+
 
 チェック方法
 -----------------------
+**Project Explorer** からチェックしたいプロジェクトを右クリックし、
+**Check All Files in the Project** をクリックします。
+
+.. image:: _static/tutorial_check.png
+
+プロジェクト内のすべてのファイルに対して、ルール設定ファイルで設定したルールがチェックされます。
