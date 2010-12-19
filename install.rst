@@ -5,19 +5,25 @@ Windows OS をお使いの場合
 
 KariyaSiesta の動作には以下のソフトウェアが必要です。
 
-- JDK 5 or later
-- Eclipse 3.5 or later
-- Sapid 6.9 or lator
-- Cygwin 1.7 or lator
+- JRE_ 5 or later
+- Eclipse_ 3.5 or later
+- Sapid_ 6.9 or lator
+- Cygwin_ 1.7 or lator
+
 
 Cygwin は、devel カテゴリのアプリケーションをすべてインストールしてください。
 
 それ以外の OS をお使いの場合
 -----------------------
 
-- JDK 5 or later
-- Eclipse 3.5 or later
-- Sapid 6.9 or lator
+- JRE_ 5 or later
+- Eclipse_ 3.5 or later
+- Sapid_ 6.9 or lator
+
+.. _JRE: http://www.java.com/
+.. _Eclipse: http://www.eclipse.org/
+.. _Sapid: http://www.sapid.org/FTP-BIN-CURRENT/
+.. _Cygwin: http://www.cygwin.com/
 
 **Help** -> **Install New Software** をクリックします。
 **Add...** をクリックします。
