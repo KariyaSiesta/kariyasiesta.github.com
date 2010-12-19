@@ -10,8 +10,8 @@ KariyaSiesta の動作には以下のソフトウェアが必要です。
 - Sapid_ 6.9 or lator
 - Cygwin_ 1.7 or lator
 
-
 Cygwin は、devel カテゴリのアプリケーションをすべてインストールしてください。
+また、Windows の環境変数 PATH に Cygwin の bin ディレクトリを追加してください。
 
 それ以外の OS をお使いの場合
 -----------------------
@@ -33,7 +33,7 @@ Cygwin は、devel カテゴリのアプリケーションをすべてインス�
 
 表示されたダイアログに以下の情報を入力します。
 
-**Names:**
+**Name:**
   **KariyaSiesta**
 **Location:**
   **http://kariyasiesta.github.com/eclipse/updates/**
