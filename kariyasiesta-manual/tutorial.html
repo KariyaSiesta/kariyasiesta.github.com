@@ -107,8 +107,8 @@ KariyaSiesta はソースコードのチェックに SDB を利用している�
 <strong>KariyaSiesta</strong> 内の <strong>XPath Viewer</strong> をクリックします。 <strong>OK</strong> をクリッ
 クします。</p>
 <img alt="_images/tutorial01.png" src="_images/tutorial01.png" />
-<p>表示された XPathViwer 内のテキストエリアに XPath 式を入力して TAB キーを押すと、
-XPath 式で指定された部分にマーカが表示されます。</p>
+<p>表示された XPathViwer 内のテキストエリアにチェックしたいルールを表す
+XPath 式を入力して TAB キーを押すと、ソースコードの該当部分にマーカが表示されます。</p>
 <img alt="_images/tutorial02.png" src="_images/tutorial02.png" />
 <p>XPathViwer 内のボタンの機能は以下の通りです。</p>
 <dl class="docutils">
@@ -123,14 +123,40 @@ XPath 式で指定された部分にマーカが表示されます。</p>
 </div>
 <div class="section" id="xpath">
 <h2>XPath によるルールの作成方法<a class="headerlink" href="#xpath" title="Permalink to this headline">¶</a></h2>
-<p>CX-Model については <a class="reference external" href="#">ドキュメント</a> を参照してください。</p>
-<p>while ブロック内部で break を使ってはいけないというルールは</p>
+<p>KariyaSiesta では、ソースコードに対するルールを CX-Model 形式の
+XML の構造に対するルールで表現します。
+CX-Model については <a class="reference external" href="#">ドキュメント</a> を参照してください。</p>
+<p>例えば、while ブロック内部で break を使ってはいけないというルールは
+以下のように書くことができます。</p>
 <div class="highlight-python"><pre>//Stmt[@sort="While" and .//keyword[text()="break"]]</pre>
 </div>
 </div>
 <div class="section" id="id3">
 <h2>ルールの設定方法<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>ルール設定ファイルの書式、設定方法(プロジェクトのプロパティとか)</p>
+<div class="highlight-python"><pre>&lt;rules&gt;
+  &lt;oneRule&gt;
+    &lt;level&gt;3&lt;/level&gt;
+    &lt;content&gt;while ブロック内部で break を使ってはいけない&lt;/content&gt;
+    &lt;xpath&gt;//Stmt[@sort="While" and .//kw[text()="break"]]&lt;/xpath&gt;
+    &lt;condition&gt;require&lt;/condition&gt;
+  &lt;/oneRule&gt;
+&lt;/rules&gt;</pre>
+</div>
+<p>タグの意味は以下の通りです。</p>
+<dl class="docutils">
+<dt><strong>level</strong></dt>
+<dd>ルールの重要度を表します。ただし現在は重要度を扱うことができないため
+空でない任意の値を設定してください。</dd>
+<dt><strong>content</strong></dt>
+<dd>ルールの名前です。</dd>
+<dt><strong>xpath</strong></dt>
+<dd>ルールを表現する XPath 式です。</dd>
+<dt><strong>condition</strong></dt>
+<dd><em>require</em> か <em>prohibit</em> を指定します。
+<em>require</em> を指定した場合は、 XPath 式にマッチする要素がある場合にマーカが表示されます。
+<em>prohibit</em> を指定した場合は、 XPath 式にマッチする要素がない場合にマーカが表示されます。</dd>
+</dl>
 </div>
 <div class="section" id="id4">
 <h2>チェック方法<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
