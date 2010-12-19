@@ -44,8 +44,8 @@
   <ul>
 <li><a class="reference internal" href="#">ルールの作成方法</a><ul>
 <li><a class="reference internal" href="#id2">XPath によるルール記述</a></li>
-<li><a class="reference internal" href="#id4">Java によるルール記述</a></li>
-<li><a class="reference internal" href="#id5">JavaScript によるルール記述</a></li>
+<li><a class="reference internal" href="#id3">Java によるルール記述</a></li>
+<li><a class="reference internal" href="#id4">JavaScript によるルール記述</a></li>
 </ul>
 </li>
 </ul>
@@ -96,16 +96,101 @@
 <p>XPath を用いたルール記述方法については <a class="reference external" href="tutorial.html">チュートリアル</a> で詳しく
 説明していますので、そちらをご参照ください。</p>
 </div>
-<div class="section" id="id4">
-<h2>Java によるルール記述<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>Java によるルール記述<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>Java を用いたルール記述方法について説明します。</p>
 <p>Java を用いたルールは、以下のインタフェースを実装します。</p>
 <blockquote>
 org.sapid.checker.core.CheckerClass</blockquote>
-<p>TODO</p>
+<p>まずは新規で Java プロジェクトを作成します。</p>
+<img alt="_images/rules_java01.png" src="_images/rules_java01.png" style="width: 500px;" />
+<p>次にプロジェクトのプロパティでビルドパスに
+<strong>sapid.jar</strong> と <strong>CheckerPlugin_x.x.x.jar</strong> を追加します。
+sapid.jar は &lt;Sapid のインストールディレクトリ&gt;/lib/classes/ 配下にあります。
+CheckerPlugin_x.x.x.jar は KariyaSiesta をインストールした Eclipse の
+plugins ディレクトリ配下にあります。</p>
+<img alt="_images/rules_java02.png" src="_images/rules_java02.png" style="width: 500px;" />
+<p>次にルールの実体となるクラスを作成します。
+org.sapid.checker.core.CheckerClass を実装してください。</p>
+<img alt="_images/rules_java03.png" src="_images/rules_java03.png" />
+<img alt="_images/rules_java04.png" src="_images/rules_java04.png" style="width: 500px;" />
+<p>そして、check メソッドの内容を書いていきます。
+main メソッドは、テスト用のエントリポイントで、
+必須ではありません。</p>
+<p>SampleRule.java:</p>
+<div class="highlight-python"><pre>package sample.rule;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.sapid.checker.core.CheckerClass;
+import org.sapid.checker.core.IFile;
+import org.sapid.checker.core.IFileFactory;
+import org.sapid.checker.core.Result;
+import org.sapid.checker.cx.wrapper.CFileElement;
+import org.sapid.checker.cx.wrapper.CStatementElement;
+import org.sapid.checker.rule.CheckRule;
+import org.sapid.checker.rule.NodeOffsetUtil;
+import org.sapid.parser.common.ParseException;
+
+public class SampleRule implements CheckerClass {
+    /** ルールのレベル */
+    private final static int LEVEL = 3;
+
+    /** ルールのメッセージ */
+    private final static String MESSAGE = "Sample Rule";
+
+    @Override
+    public List&lt;Result&gt; check(IFile file, CheckRule rule) {
+        CFileElement cfile = new CFileElement(file.getDOM());
+        List&lt;Result&gt; results = new ArrayList&lt;Result&gt;();
+
+        // すべての while 文を集める
+        CStatementElement[] stmts = cfile.getStatments();
+        for (CStatementElement stmt : stmts) {
+            if (!("While".equals(stmt.getSort()))) {
+                continue;
+            }
+            // While 文の下にある break 文を集める
+            CStatementElement[] subStmts = stmt.getStatments();
+            for (CStatementElement subStmt : subStmts) {
+                if (!subStmt.isBreakStatement()) {
+                    continue;
+                }
+                results.add(new Result(null, new NodeOffsetUtil(subStmt
+                        .getElem()).getRange(), LEVEL, MESSAGE));
+            }
+        }
+        return results;
+    }
+
+    /**
+     * @param args
+     * @throws ParseException
+     * @throws IOException
+     */
+    public static void main(String[] args) throws ParseException, IOException {
+        if (args.length != 1) {
+            return;
+        }
+        List&lt;Result&gt; check = new SampleRule().check(
+                IFileFactory.create(args[0]), null);
+        for (Result result : check) {
+            System.out.println(result.getLine() + ": " + result.getMessage());
+        }
+
+    }
+
+}</pre>
 </div>
-<div class="section" id="id5">
-<h2>JavaScript によるルール記述<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>この例では、 <a class="reference external" href="tutorial.html">チュートリアル</a> で XPath を用いて記述した
+「While 文で break を利用しない」というルールを
+Java で実装しなおしたものです。
+args[0] には、SDB 構築済みの C ファイルを渡してください。</p>
+</div>
+<div class="section" id="id4">
+<h2>JavaScript によるルール記述<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>JavaScript を用いたルール記述方法は現在実装中です。
 CSS セレクタ等によるルール記述が可能になる予定です。
 KariyaSiesta の進化にご期待ください。</p>
