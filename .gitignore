@@ -3,3 +3,4 @@
 .omakedb
 *.omc
 _build/doctrees
+*~

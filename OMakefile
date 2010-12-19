@@ -13,6 +13,9 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_a4) $(SPHINXOPTS) .
 
 SRCS[] =
 	index
+	install
+	tutorial
+	rules
 
 .PHONY : clean
 .DEFAULT: $(addsuffix .rst, $(SRCS))

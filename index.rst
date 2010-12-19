@@ -29,3 +29,6 @@ KariyaSiesta は、CX-Checker の特徴に加え、以下の強化をしてい�
 .. toctree::
    :maxdepth: 2
 
+   install
+   tutorial
+   rules
