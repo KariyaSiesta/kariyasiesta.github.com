@@ -31,7 +31,7 @@ div.related ul li a {
 a:link {
    color: #00a381;
    font-style: normal;
- t0  text-decoration: underline;
+   text-decoration: underline;
 }
 a:visited {
    color: #006e54;
@@ -44,4 +44,11 @@ a:hover {
 }
 a:active {
    text-decoration: none;
+}
+
+div.sphinxsidebar h3 a {
+    color: #00a381 !important;
+}
+div.sphinxsidebar h3 a:visited {
+    color: #006e54 !important;
 }
