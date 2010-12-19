@@ -95,7 +95,7 @@
 <p>SDB はソフトウェアデータベースの略で、C言語ソースコードの解析結果を保存しています。
 KariyaSiesta はソースコードのチェックに SDB を利用しているため、
 チェックの前に SDB を構築する必要があります。</p>
-<p><strong>Project Explorer</strong> からチェックしたいプロジェクトを右クリックし、
+<p><strong>Project Explorer</strong> からチェックしたいプロジェクトの Makefile を右クリックし、
 <strong>KariyaSiesta</strong> -&gt; <strong>Create SDB</strong> をクリックします。</p>
 <img alt="_images/tutorial_sdb1.png" src="_images/tutorial_sdb1.png" />
 <img alt="_images/tutorial_sdb2.png" src="_images/tutorial_sdb2.png" />
@@ -133,8 +133,10 @@ CX-Model については <a class="reference external" href="#">ドキュメン�
 </div>
 <div class="section" id="id3">
 <h2>ルールの設定方法<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>ルール設定ファイルの書式、設定方法(プロジェクトのプロパティとか)</p>
-<div class="highlight-python"><pre>&lt;rules&gt;
+<p>複数のルールをチェックしたい場合は、ルール設定ファイルを作成します。
+上記のルールのルール設定ファイルの内容は、例えば以下のようになります。</p>
+<div class="highlight-python"><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;rules&gt;
   &lt;oneRule&gt;
     &lt;level&gt;3&lt;/level&gt;
     &lt;content&gt;while ブロック内部で break を使ってはいけない&lt;/content&gt;
@@ -157,9 +159,19 @@ CX-Model については <a class="reference external" href="#">ドキュメン�
 <em>require</em> を指定した場合は、 XPath 式にマッチする要素がある場合にマーカが表示されます。
 <em>prohibit</em> を指定した場合は、 XPath 式にマッチする要素がない場合にマーカが表示されます。</dd>
 </dl>
+<p>ルール設定ファイルを作成したら、ルール設定ファイルを KariyaSiesta に登録します。
+<strong>Project Explorer</strong> からプロジェクトを右クリックし、 <strong>Properties</strong> をクリックします。
+<strong>KariyaSiesta</strong> をクリックします。</p>
+<img alt="_images/tutorial_property.png" src="_images/tutorial_property.png" />
+<p><strong>XPath Rule XML (WorkSpace)</strong> 内の <strong>New...</strong> をクリックします。
+ルール設定ファイルを置いたディレクトリを選択し、 <strong>*OK*</strong> をクリックします。</p>
 </div>
 <div class="section" id="id4">
 <h2>チェック方法<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p><strong>Project Explorer</strong> からチェックしたいプロジェクトを右クリックし、
+<strong>Check All Files in the Project</strong> をクリックします。</p>
+<img alt="_images/tutorial_check.png" src="_images/tutorial_check.png" />
+<p>プロジェクト内のすべてのファイルに対して、ルール設定ファイルで設定したルールがチェックされます。</p>
 </div>
 </div>
 
