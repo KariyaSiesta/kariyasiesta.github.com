@@ -45,7 +45,7 @@ XPath によるルールの作成方法
 -----------------------------
 KariyaSiesta では、ソースコードに対するルールを CX-Model 形式の
 XML の構造に対するルールで表現します。
-CX-Model については `ドキュメント <_static/CX-model.dtd>`_ を参照してください。
+CX-Model については `ドキュメント <_static/README-CX-model.ja.txt>`_ を参照してください。
 
 例えば、while ブロック内部で break を使ってはいけないというルールは
 以下のように書くことができます。 ::
