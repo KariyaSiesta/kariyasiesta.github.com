@@ -83,9 +83,9 @@
 <h1>ルールの作成方法<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>KariyaSiesta は 3種類のルール作成法を提供しています。</p>
 <ul class="simple">
-<li><a class="reference external" href="#xpath">XPath によるルール記述</a></li>
-<li><a class="reference external" href="#java">Java によるルール記述</a></li>
-<li><a class="reference external" href="#javascript">JavaScript によるルール記述</a></li>
+<li><a class="reference external" href="#id2">XPath によるルール記述</a></li>
+<li><a class="reference external" href="#id3">Java によるルール記述</a></li>
+<li><a class="reference external" href="#id4">JavaScript によるルール記述</a></li>
 </ul>
 <p>XPath &gt; JavaScript &gt; Java の順でルールの記述は難しくなりますが、
 その分表現力は高くなります。
@@ -93,8 +93,8 @@
 以下では、それぞれのルール記述方法について説明します。</p>
 <div class="section" id="id2">
 <h2>XPath によるルール記述<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>XPath を用いたルール記述方法については <a class="reference external" href="tutorial.html">チュートリアル</a> で詳しく
-説明していますので、そちらをご参照ください。</p>
+<p>XPath を用いたルール記述方法については <a class="reference external" href="tutorial.html">チュートリアル</a>
+で詳しく説明していますので、そちらをご参照ください。</p>
 </div>
 <div class="section" id="id3">
 <h2>Java によるルール記述<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
@@ -106,7 +106,7 @@ org.sapid.checker.core.CheckerClass</blockquote>
 <img alt="_images/rules_java01.png" src="_images/rules_java01.png" style="width: 500px;" />
 <p>次にプロジェクトのプロパティでビルドパスに
 <strong>sapid.jar</strong> と <strong>CheckerPlugin_x.x.x.jar</strong> を追加します。
-sapid.jar は &lt;Sapid のインストールディレクトリ&gt;/lib/classes/ 配下にあります。
+sapid.jar は &lt;Sapid のインストールディレクトリ&gt;/lib/class/ 配下にあります。
 CheckerPlugin_x.x.x.jar は KariyaSiesta をインストールした Eclipse の
 plugins ディレクトリ配下にあります。</p>
 <img alt="_images/rules_java02.png" src="_images/rules_java02.png" style="width: 500px;" />
@@ -174,9 +174,9 @@ public class SampleRule implements CheckerClass {
         if (args.length != 1) {
             return;
         }
-        List&lt;Result&gt; check = new SampleRule().check(
+        List&lt;Result&gt; results = new SampleRule().check(
                 IFileFactory.create(args[0]), null);
-        for (Result result : check) {
+        for (Result result : results) {
             System.out.println(result.getLine() + ": " + result.getMessage());
         }
 
@@ -185,7 +185,7 @@ public class SampleRule implements CheckerClass {
 }</pre>
 </div>
 <p>この例では、 <a class="reference external" href="tutorial.html">チュートリアル</a> で XPath を用いて記述した
-「While 文で break を利用しない」というルールを
+「while ブロック内部で break を使ってはいけない」というルールを
 Java で実装しなおしたものです。
 args[0] には、SDB 構築済みの C ファイルを渡してください。</p>
 </div>
