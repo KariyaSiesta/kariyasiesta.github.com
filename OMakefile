@@ -19,7 +19,7 @@ SRCS[] =
 
 .PHONY : clean
 .DEFAULT: $(addsuffix .rst, $(SRCS))
-	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html/kariyasiesta/manual
+	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html/kariyasiesta-manual
 
 clean:
 	rm -rf $(BUILDDIR)/html/* *~
