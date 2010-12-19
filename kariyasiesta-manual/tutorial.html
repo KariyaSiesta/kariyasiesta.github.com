@@ -44,6 +44,18 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">チュートリアル</a><ul>
+<li><a class="reference internal" href="#sdb">SDB の作成</a></li>
+<li><a class="reference internal" href="#xpathviwer">XPathViwer の使い方</a></li>
+<li><a class="reference internal" href="#xpath">XPath によるルールの作成方法</a></li>
+<li><a class="reference internal" href="#id3">ルールの設定方法</a></li>
+<li><a class="reference internal" href="#id4">チェック方法</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="install.html"
                         title="previous chapter">インストール方法</a></p>
@@ -78,6 +90,51 @@
             
   <div class="section" id="id1">
 <h1>チュートリアル<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="sdb">
+<h2>SDB の作成<a class="headerlink" href="#sdb" title="Permalink to this headline">¶</a></h2>
+<p>SDB はソフトウェアデータベースの略で、C言語ソースコードの解析結果を保存しています。
+KariyaSiesta はソースコードのチェックに SDB を利用しているため、
+チェックの前に SDB を構築する必要があります。</p>
+<p><strong>Project Explorer</strong> からチェックしたいプロジェクトを右クリックし、
+<strong>KariyaSiesta</strong> -&gt; <strong>Create SDB</strong> をクリックします。</p>
+<img alt="_images/tutorial_sdb1.png" src="_images/tutorial_sdb1.png" />
+<img alt="_images/tutorial_sdb2.png" src="_images/tutorial_sdb2.png" />
+<p>これで SDB の構築は終了です。</p>
+</div>
+<div class="section" id="xpathviwer">
+<h2>XPathViwer の使い方<a class="headerlink" href="#xpathviwer" title="Permalink to this headline">¶</a></h2>
+<p><strong>Window</strong> -&gt; <strong>Show View</strong> -&gt; <strong>Other...</strong> をクリックし、
+<strong>KariyaSiesta</strong> 内の <strong>XPath Viewer</strong> をクリックします。 <strong>OK</strong> をクリッ
+クします。</p>
+<img alt="_images/tutorial01.png" src="_images/tutorial01.png" />
+<p>表示された XPathViwer 内のテキストエリアに XPath 式を入力して TAB キーを押すと、
+XPath 式で指定された部分にマーカが表示されます。</p>
+<img alt="_images/tutorial02.png" src="_images/tutorial02.png" />
+<p>XPathViwer 内のボタンの機能は以下の通りです。</p>
+<dl class="docutils">
+<dt><strong>Clear:</strong></dt>
+<dd>テキストエリアに入力した XPath 式が削除されます。</dd>
+<dt><strong>Get:</strong></dt>
+<dd>エディタでソースコードの一部を選択し Get ボタンを押すと、
+その部分の XPath 式がテキストエリアに出力されます。</dd>
+<dt><strong>Copy:</strong></dt>
+<dd>入力した XPath 式に対応するルール設定ファイルがクリップボードにコピーされます。</dd>
+</dl>
+</div>
+<div class="section" id="xpath">
+<h2>XPath によるルールの作成方法<a class="headerlink" href="#xpath" title="Permalink to this headline">¶</a></h2>
+<p>CX-Model については <a class="reference external" href="#">ドキュメント</a> を参照してください。</p>
+<p>while ブロック内部で break を使ってはいけないというルールは</p>
+<div class="highlight-python"><pre>//Stmt[@sort="While" and .//keyword[text()="break"]]</pre>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>ルールの設定方法<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>ルール設定ファイルの書式、設定方法(プロジェクトのプロパティとか)</p>
+</div>
+<div class="section" id="id4">
+<h2>チェック方法<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
