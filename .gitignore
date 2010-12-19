@@ -1,2 +1,5 @@
 .DS_Store
-logs.zip
+.omakedb.lock
+.omakedb
+*.omc
+_build
