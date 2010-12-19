@@ -2,4 +2,4 @@
 .omakedb.lock
 .omakedb
 *.omc
-_build
+_build/doctrees
