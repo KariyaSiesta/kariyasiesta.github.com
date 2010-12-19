@@ -1,0 +1,131 @@
+<!--
+# 
+# Program:              $RCSfile: CX-model.dtd,v $  $Revision: 60.4 $
+# 
+# Purpose:              CX-model ver. 0.9.
+# 
+# Author:               N.Atsumi  2005/09/20
+#                       S.Yamamoto  2005/12/09
+# 
+# Copyright:            N.Atsumi  2005
+#                       This file is a product of the project Sapid.
+#
+-->
+
+<!--
+$Id: CX-model.dtd,v 60.4 2010/04/11 23:50:31 yamamoto Exp yamamoto $
+-->  
+<!ELEMENT CX             (File, TypeInfos)>
+<!ELEMENT File           (Define | Include | Function | Prototype
+                          | Global | Typedecl | Tag | comment | pp | no_expand
+                          | macroCall | op | sp | nl | Expr)*> 
+<!ELEMENT T               (#PCDATA)>
+<!ATTLIST File            id      ID      #REQUIRED>
+<!ELEMENT Include        (kw | hfile | sp | comment)*>
+<!ELEMENT Define         (kw | macroPattern | macroBody | sp | comment)*>
+<!ELEMENT Type           (ident | kw | op | nl | comment)*>
+<!ELEMENT Function       (Define | Type | Typedef | Tag | Param | Argument |
+                          Local | Global | Stmt | flow | Prototype | Expr
+                          | macroCall | Label | ident | comment
+                          | literal | pp | no_expand | kw | sp | op | nl)*>
+<!ATTLIST Function        id ID #IMPLIED>
+<!ELEMENT Prototype      (Prototype | Type | Param | Argument | ident
+                          | macroCall | literal | comment | pp
+                          | no_expand | kw | sp | op | nl)*>
+<!ATTLIST Prototype       defid CDATA #REQUIRED>
+<!ELEMENT Param          (Type | ident | kw | sp | op | nl | comment
+                          | macroCall | literal)*>
+<!ATTLIST Param           id ID #IMPLIED>
+<!ELEMENT Global         (Global | Type | ident | Enum | Member | Expr
+                          | Param | flow | Include | literal
+                          | macroCall | kw | sp | op | nl | comment)*>
+<!ATTLIST Global          id ID #IMPLIED
+                          defid CDATA #IMPLIED>
+<!ELEMENT Local          (Type | Expr | flow | Param | ident | literal | macroCall
+                          | kw | sp | op | nl | comment | Enum)*>
+<!ATTLIST Local           id ID #IMPLIED
+                          defid CDATA #IMPLIED>
+<!ELEMENT Argument       (macroCall | Type | Param | ident | kw | sp | op | nl
+                          | comment )*>
+<!ATTLIST Argument        id CDATA #REQUIRED>
+<!ELEMENT Member         (Tag | Type | Member | Enum | Define | no_expand
+                          | pp | macroCall | ident | Expr | literal | kw
+                          | sp | op | nl | comment)*>
+<!ATTLIST Member          id ID #REQUIRED>
+<!ELEMENT Enum           (Type | ident | Expr | macroCall | literal | kw
+                          | sp | op | nl | comment)*>
+<!ATTLIST Enum            id ID #REQUIRED>
+<!ELEMENT Typedecl       (Typedecl | Member | Enum | Type | Expr | ident | Define
+                          | macroCall | literal |  kw | sp | pp | no_expand
+                          | op | nl | comment)*>
+<!ATTLIST Typedecl        id      ID      #REQUIRED>
+<!ELEMENT Stmt           (Prototype | Stmt | flow | Expr | Local | Define | macroCall
+                          | literal | Label | pp | ident
+                          | no_expand | kw | sp | op | nl | comment)*>
+<!ATTLIST Stmt            id      ID   #REQUIRED
+                          sort    CDATA   #IMPLIED>
+<!ELEMENT Expr           (Expr | Type | Label | macroCall | literal
+                          | ident | kw | sp | op | nl | comment | pp
+                          | no_expand)*>
+<!ATTLIST Expr            id      CDATA #IMPLIED
+                          type_id CDATA #IMPLIED>
+<!ELEMENT Tag            (ident | Enum | Define | Member | Expr | literal
+                          | pp | no_expand | kw | sp | op | nl | comment)*>
+<!ATTLIST Tag             id ID #REQUIRED>
+<!ELEMENT ident           (#PCDATA)>
+<!ATTLIST ident           defid CDATA #REQUIRED
+                          sort CDATA #IMPLIED
+                          type_id IDREF #IMPLIED>
+<!ELEMENT literal         (#PCDATA)>
+<!ATTLIST literal         defid CDATA #REQUIRED>
+<!ELEMENT Label           (kw | sp | literal | ident | Stmt | Expr | flow
+                           | macroCall)*>
+<!ELEMENT macroPattern    (#PCDATA)>
+<!ATTLIST macroPattern    id ID #REQUIRED>
+<!ELEMENT macroBody       (#PCDATA)>
+<!ELEMENT macroCall       (#PCDATA)>
+<!ATTLIST macroCall       defid CDATA #IMPLIED>
+<!ELEMENT comment         (#PCDATA)>
+<!ELEMENT hfile           (#PCDATA)>
+<!ATTLIST hfile           id ID #REQUIRED
+                          ref CDATA #IMPLIED>
+<!ELEMENT pp              (#PCDATA)>
+<!ELEMENT no_expand       (#PCDATA)>
+<!ELEMENT kw              (#PCDATA)>
+<!ATTLIST kw               sort      CDATA      #IMPLIED>
+<!ELEMENT sp              (#PCDATA)>
+<!ATTLIST sp               sort      CDATA      #IMPLIED>
+<!ATTLIST sp               length      CDATA      #IMPLIED>
+<!ELEMENT op              (#PCDATA)>
+<!ELEMENT nl              (#PCDATA)>
+<!ATTLIST nl               line      CDATA      #REQUIRED
+                           offset    CDATA      #REQUIRED>
+<!ELEMENT TypeInfos       (TypeInfo)*>
+<!ELEMENT TypeInfo        (typeRef)*>
+<!ATTLIST TypeInfo        id ID #REQUIRED
+                          sort (struct | union | enum | typedef
+                                | standard | pointer | array | function
+                                | ... | unknown) #REQUIRED
+                          const (true | false) #IMPLIED
+                          volatile (true | false) #IMPLIED
+                          name CDATA #IMPLIED
+                          type (void | char | int | float | double
+                                | unspecified) #IMPLIED
+                          sign (true | false | unspecified) #IMPLIED
+                          size (long_long | long | short
+                                | standard) #IMPLIED
+                          array_size CDATA #IMPLIED
+                          ref  IDREF #IMPLIED
+                          text CDATA #IMPLIED>
+<!ELEMENT typeRef         EMPTY>
+<!ATTLIST typeRef         sort (member | argument) #REQUIRED
+                          ref  IDREF #REQUIRED>
+<!ELEMENT flow            EMPTY>
+<!ATTLIST flow            id ID #REQUIRED
+                          stmt_id IDREF #REQUIRED
+                          next IDREF #IMPLIED
+                          sort (control_normal | branch_true | branch_false
+                                | loopback | switch_case | switch_default
+                                | data_dependence ) #REQUIRED
+                          expr_id IDREF #IMPLIED
+                          dep_id CDATA #IMPLIED>
